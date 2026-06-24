@@ -140,13 +140,7 @@ export default function ProductDetails() {
     }, 3000);
   };
 
-  if (!product) {
-    return (
-      <View style={styles.container}>
-        <Text>Product not found</Text>
-      </View>
-    );
-  }
+
   const handleAddwishlist = async () => {
     if (!user) {
       router.push("/login");
@@ -208,6 +202,14 @@ export default function ProductDetails() {
     return (
       <View style={styles.loaderContainer}>
         <ActivityIndicator size="large" color="#ff3f6c" />
+      </View>
+    );
+  }
+
+  if (!product) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.emptyText}>Product not found</Text>
       </View>
     );
   }
