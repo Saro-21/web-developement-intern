@@ -1,6 +1,7 @@
 {
-  "cleanUrls": true,
+  "buildCommand": "npx expo export -p web",
   "outputDirectory": "dist",
+  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/product/:id",
