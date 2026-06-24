@@ -2,9 +2,6 @@
   "buildCommand": "npx expo export -p web",
   "outputDirectory": "dist",
   "cleanUrls": true,
-  "env": {
-    "MONGO_URI": "mongodb+srv://sarabhoji21:Sarabhoji%402102@sarabhoji.fxbd5sj.mongodb.net/myntra?retryWrites=true&w=majority"
-  },
   "headers": [
     {
       "source": "/api/(.*)",
