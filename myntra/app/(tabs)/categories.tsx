@@ -20,6 +20,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import { Search, X } from "lucide-react-native";
 import axios from "axios";
+import API_URL from "@/constants/Api";
 
 // const categories = [
 //   {
@@ -131,7 +132,7 @@ export default function TabTwoScreen() {
     const fetchproduct = async () => {
       try {
         setIsLoading(true);
-        const cat = await axios.get("https://myntra-clone-xj36.onrender.com/category");
+        const cat = await axios.get(`${API_URL}/category`);
         setcategories(cat.data);
       } catch (error) {
         console.log(error);

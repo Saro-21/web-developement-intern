@@ -15,6 +15,7 @@ import React from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRecentlyViewed } from "@/context/RecentlyViewedContext";
 import axios from "axios";
+import API_URL from "@/constants/Api";
 
 // Mock product data - in a real app, this would come from an API
 // const products = {
@@ -101,7 +102,7 @@ export default function ProductDetails() {
       try {
         setIsLoading(true);
         const res = await axios.get(
-          `https://myntra-clone-xj36.onrender.com/product/${id}`
+          `${API_URL}/product/${id}`
         );
         setproduct(res.data);
         addToRecentlyViewed(res.data);
@@ -153,7 +154,7 @@ export default function ProductDetails() {
     }
 
     try {
-      await axios.post(`https://myntra-clone-xj36.onrender.com/wishlist`, {
+      await axios.post(`${API_URL}/wishlist`, {
         userId: user._id,
         productId: id,
       });
@@ -176,7 +177,7 @@ export default function ProductDetails() {
     }
     try {
       setLoading(true);
-      await axios.post(`https://myntra-clone-xj36.onrender.com/bag`, {
+      await axios.post(`${API_URL}/bag`, {
         userId: user._id,
         productId: id,
         size: selectedSize,

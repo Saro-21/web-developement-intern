@@ -13,6 +13,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRecentlyViewed } from "@/context/RecentlyViewedContext";
 import axios from "axios";
+import API_URL from "@/constants/Api";
 
 // const categories = [
 //   {
@@ -110,8 +111,8 @@ export default function Home() {
     const fetchproduct = async () => {
       try {
         setIsLoading(true);
-        const cat = await axios.get("https://myntra-clone-xj36.onrender.com/category");
-        const product = await axios.get("https://myntra-clone-xj36.onrender.com/product");
+        const cat = await axios.get(`${API_URL}/category`);
+        const product = await axios.get(`${API_URL}/product`);
         setcategories(cat.data);
         setproduct(product.data);
       } catch (error) {

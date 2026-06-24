@@ -3,6 +3,7 @@ import { useAuth } from "./AuthContext";
 import * as NativeSecureStore from "expo-secure-store";
 import { Platform } from "react-native";
 import axios from "axios";
+import API_URL from "@/constants/Api";
 
 // Web compatibility fallback wrapper
 const SecureStore = Platform.OS === "web" ? {
@@ -68,7 +69,7 @@ export const RecentlyViewedProvider = ({ children }: { children: React.ReactNode
         }));
 
         try {
-          const res = await axios.post("https://myntra-clone-xj36.onrender.com/recently-viewed/sync", {
+          const res = await axios.post(`${API_URL}/recently-viewed/sync`, {
             userId: user._id,
             localHistory: syncPayload,
           });
@@ -143,7 +144,7 @@ export const RecentlyViewedProvider = ({ children }: { children: React.ReactNode
 
       // 2. If logged in, send product view to backend
       if (user) {
-        axios.post("https://myntra-clone-xj36.onrender.com/recently-viewed", {
+        axios.post(`${API_URL}/recently-viewed`, {
           userId: user._id,
           productId: product._id,
         }).catch(err => {
@@ -163,7 +164,7 @@ export const RecentlyViewedProvider = ({ children }: { children: React.ReactNode
 
       if (user) {
         // If logged in, tell backend to clear too
-        axios.delete(`https://myntra-clone-xj36.onrender.com/recently-viewed/user/${user._id}`).catch(err => {
+        axios.delete(`${API_URL}/recently-viewed/user/${user._id}`).catch(err => {
           console.error("Failed to delete user history from server:", err);
         });
       }

@@ -1,5 +1,6 @@
 import { useAuth } from "@/context/AuthContext";
 import axios from "axios";
+import API_URL from "@/constants/Api";
 import { useRouter } from "expo-router";
 import { CreditCard, MapPin, Truck } from "lucide-react-native";
 import React from "react";
@@ -23,7 +24,7 @@ export default function Checkout() {
       return;
     }
     try {
-      await axios.post(`https://myntra-clone-xj36.onrender.com/order/create/${user._id}`, {
+      await axios.post(`${API_URL}/order/create/${user._id}`, {
         shippingAddress: "123 Main Street, Apt 4B, New York, NY, 10001",
         paymentMethod: "Card",
       });

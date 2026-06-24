@@ -1,5 +1,6 @@
 import { useAuth } from "@/context/AuthContext";
 import axios from "axios";
+import API_URL from "@/constants/Api";
 import { useRouter } from "expo-router";
 import { Heart, Trash2 } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
@@ -45,9 +46,7 @@ export default function Wishlist() {
     if (user) {
       try {
         setIsLoading(true);
-        const bag = await axios.get(
-          `https://myntra-clone-xj36.onrender.com/wishlist/${user._id}`
-        );
+        const bag = await axios.get(`${API_URL}/wishlist/${user._id}`);
         setwishlist(bag.data);
       } catch (error) {
         console.log(error);
@@ -59,7 +58,7 @@ export default function Wishlist() {
   };
   const handledelete=async(itemid:any)=>{
     try {
-      await axios.delete(`https://myntra-clone-xj36.onrender.com/wishlist/${itemid}`)
+      await axios.delete(`${API_URL}/wishlist/${itemid}`)
       fetchproduct();
     } catch (error) {
       console.log(error)
