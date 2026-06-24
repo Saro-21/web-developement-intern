@@ -78,7 +78,10 @@ module.exports = async (req, res) => {
     return res.status(500).json({ message: "DB connection failed", error: err.message });
   }
 
-  const pathParts = (req.query.path || []);
+  const raw = req.url || "";
+  // Strip leading /api/ prefix, split into parts
+  const trimmed = raw.replace(/^\/api\/?/, "").split("?")[0];
+  const pathParts = trimmed ? trimmed.split("/").filter(Boolean) : [];
   const path0 = pathParts[0] || "";
   const path1 = pathParts[1] || "";
   const path2 = pathParts[2] || "";
